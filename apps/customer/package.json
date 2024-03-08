@@ -1,0 +1,17 @@
+{
+  "name": "@batuhan-kutluay-case/customer",
+  "version": "1.0.0",
+  "description": "Customer API",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:debug": "nest start --debug 0.0.0.0:9230 --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

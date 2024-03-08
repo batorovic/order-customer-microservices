@@ -1,0 +1,97 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Order Service",
+      "program": "${workspaceFolder}/apps/order/src/main.ts",
+      "args": [
+        "${workspaceFolder}/apps/order/src/main.ts"
+      ],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "order",
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "8081",
+        "NODE_ENV": "dev",
+        "MONGODB_URI": "mongodb://localhost:27017/order",
+        "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Customer Service",
+      "program": "${workspaceFolder}/apps/customer/src/main.ts",
+      "args": [
+        "${workspaceFolder}/apps/customer/src/main.ts"
+      ],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "customer",
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "8002",
+        "NODE_ENV": "dev",
+        "MONGODB_URI": "mongodb://localhost:27050/customer",
+        "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
+      }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach Customer Service (docker debug)",
+      "remoteRoot": "/usr/src/app",
+      "localRoot": "${workspaceFolder}",
+      "port": 9228,
+      "restart": true,
+      "protocol": "inspector",
+      "address": "0.0.0.0",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+  ],
+  "compounds": [
+    {
+      "name": "Customer + Order",
+      "configurations": [
+        "Launch Customer Service",
+        "Launch Order Service"
+      ]
+    },
+  ]
+}
