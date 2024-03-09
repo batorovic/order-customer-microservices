@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { configuration, envVariablesSchema } from '../config';
+import { CustomerModule } from './customer/customer.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { configuration, envVariablesSchema } from '../config';
       cache: true,
     }),
     DatabaseModule,
+    CustomerModule,
   ],
   providers: [
     {

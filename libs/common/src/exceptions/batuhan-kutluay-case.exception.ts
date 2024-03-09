@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 import { BaseCustomException } from './base';
 
-const createOllangErrorResponse = (exception: BatuhanKutluayCase) => {
+const createOllangErrorResponse = (exception: BatuhanKutluayCaseException) => {
   const error = exception?.constructor?.name;
   const { code, message, data, errorData } = exception;
 
@@ -14,7 +14,7 @@ const createOllangErrorResponse = (exception: BatuhanKutluayCase) => {
   };
 };
 
-export class BatuhanKutluayCase extends BaseCustomException {
+export class BatuhanKutluayCaseException extends BaseCustomException {
   constructor(
     public override readonly message: string,
     public override readonly code: number,
@@ -26,7 +26,7 @@ export class BatuhanKutluayCase extends BaseCustomException {
     super(message, code, statusCode, data);
 
     this.name = 'OllangException';
-    Object.setPrototypeOf(this, BatuhanKutluayCase.prototype);
+    Object.setPrototypeOf(this, BatuhanKutluayCaseException.prototype);
   }
 
   public createErrorResponse() {

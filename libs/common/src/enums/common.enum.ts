@@ -18,3 +18,8 @@ export enum SORT_ORDER {
   ASC = 1,
   DESC = -1,
 }
+
+export enum PaginationSortByValues {
+  CREATED_AT = 'createdAt',
+  UPDATED_AT = 'updatedAt',
+}

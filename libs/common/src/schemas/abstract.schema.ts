@@ -5,7 +5,6 @@ import { SchemaTypes, Types } from 'mongoose';
 @Schema()
 export class AbstractDocument {
   @ApiProperty()
-  // @Prop({ type: SchemaTypes.ObjectId }) //TODO: we need to remove this for the id to be generated
   _id: Types.ObjectId;
 
   @ApiProperty()
