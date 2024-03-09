@@ -1,8 +1,7 @@
-import { CreateCustomerDto, UpdateCustomerDto } from '@batuhan_kutluay-case/common';
+import { CreateCustomerDto, GetAllCustomersResponseDto, UpdateCustomerDto } from '@batuhan_kutluay-case/common';
 import { PaginationDto } from '@batuhan_kutluay-case/common/dto/pagination.dto';
 import { Injectable, Logger } from '@nestjs/common';
 import { ObjectId } from 'mongoose';
-import { GetAllCustomersResponseDto } from './dto';
 import { CustomerNotFoundException } from './exceptions';
 import { CustomerRepository } from './repositories';
 
@@ -21,7 +20,9 @@ export class CustomerService {
   async update(id: string, updateCustomerDto: UpdateCustomerDto): Promise<boolean> {
     this.logger.debug(updateCustomerDto, '[CustomerService] updating customer');
 
-    this.validate(id);
+    if (!(await this.validate(id))) {
+      throw new CustomerNotFoundException();
+    }
 
     await this.customerRepository.update(id, updateCustomerDto);
 
@@ -31,7 +32,9 @@ export class CustomerService {
   async delete(id: string): Promise<boolean> {
     this.logger.debug(id, '[CustomerService] deleting customer');
 
-    this.validate(id);
+    if (!(await this.validate(id))) {
+      throw new CustomerNotFoundException();
+    }
 
     await this.customerRepository.delete(id);
 
@@ -61,9 +64,6 @@ export class CustomerService {
 
     const customer = await this.customerRepository.getCustomerById(id);
 
-    if (!customer) {
-      throw new CustomerNotFoundException();
-    }
-    return true;
+    return customer ? true : false;
   }
 }

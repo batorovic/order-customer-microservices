@@ -6,6 +6,7 @@ import { HttpExceptionsFilter } from '@batuhan_kutluay-case/common';
 import { AsyncLocalStorageModule, HealthModule, LoggerModule } from '@batuhan_kutluay-case/core';
 import { ServiceClientModule } from '@batuhan_kutluay-case/core/service-client/service-client.module';
 import { ApiGatewayModule } from './api-gateway/api-gateway.module';
+import { CustomerModule } from './api-gateway/apps/customer/customer.module';
 import { configuration, envVariablesSchema } from './config';
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { configuration, envVariablesSchema } from './config';
     HealthModule,
     ServiceClientModule,
     ApiGatewayModule,
-    // PayoutModule,
+    CustomerModule,
   ],
   providers: [
     {

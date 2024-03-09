@@ -1,5 +1,6 @@
 import {
   CreateCustomerDto,
+  CustomerDto,
   GetAllCustomersResponseDto,
   ParseObjectIdPipe,
   UpdateCustomerDto,
@@ -7,9 +8,7 @@ import {
 import { PaginationDto } from '@batuhan_kutluay-case/common/dto/pagination.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ObjectId } from 'mongoose';
 import { CustomerService } from './customer.service';
-import { CustomerDocument } from './entities';
 
 @ApiTags('Customers')
 @Controller('customers')
@@ -21,8 +20,8 @@ export class CustomerController {
     description: 'The customer has been successfully retrieved by id.',
   })
   @Get(':id')
-  async getById(@Param('id', ParseObjectIdPipe) id: string): Promise<CustomerDocument> {
-    return this.customerService.getById(id);
+  async getCustomerById(@Param('id', ParseObjectIdPipe) id: string): Promise<CustomerDto> {
+    return this.customerService.getCustomerById(id);
   }
 
   @ApiOperation({ summary: 'Get customers' })
@@ -30,8 +29,8 @@ export class CustomerController {
     description: 'The customers has been successfully retrieved',
   })
   @Get('')
-  async get(@Query() paginationDto: PaginationDto): Promise<GetAllCustomersResponseDto> {
-    return this.customerService.getAll(paginationDto);
+  async getAllCustomers(@Query() paginationDto: PaginationDto): Promise<GetAllCustomersResponseDto> {
+    return this.customerService.getAllCustomers(paginationDto);
   }
 
   @ApiOkResponse({
@@ -39,18 +38,18 @@ export class CustomerController {
   })
   @ApiOperation({ summary: 'Create customer' })
   @Post('')
-  async create(@Body() createCustomerDto: CreateCustomerDto): Promise<ObjectId> {
-    return this.customerService.create(createCustomerDto);
+  async createCustomer(@Body() createCustomerDto: CreateCustomerDto): Promise<string> {
+    return this.customerService.createCustomer(createCustomerDto);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update customer by id' })
   @ApiOkResponse({ description: 'The customer has been successfully updated.', type: Boolean })
-  async update(
+  async updateCustomer(
     @Param('id', ParseObjectIdPipe) id: string,
     @Body() updateCustomerDto: UpdateCustomerDto,
   ): Promise<boolean> {
-    return this.customerService.update(id, updateCustomerDto);
+    return this.customerService.updateCustomer(id, updateCustomerDto);
   }
 
   @ApiOkResponse({
@@ -59,7 +58,7 @@ export class CustomerController {
   })
   @ApiOperation({ summary: 'Delete customer' })
   @Delete(':id')
-  async delete(@Param('id', ParseObjectIdPipe) id: string): Promise<boolean> {
-    return this.customerService.delete(id);
+  async deleteCustomer(@Param('id', ParseObjectIdPipe) id: string): Promise<boolean> {
+    return this.customerService.deleteCustomer(id);
   }
 }

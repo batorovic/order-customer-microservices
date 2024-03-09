@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { IsDefined, IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 import { AddresDto } from '../../address.dto';
 
 export class CreateCustomerDto {
@@ -24,7 +24,7 @@ export class CreateCustomerDto {
     description: 'Address of the customer',
     type: AddresDto,
   })
-  @IsNotEmpty()
+  @IsDefined()
   @ValidateNested()
   @Type(() => AddresDto)
   readonly address: AddresDto;
