@@ -7,6 +7,39 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch API Gateway",
+      "program": "${workspaceFolder}/apps/api-gateway/src/main.ts",
+      "args": [
+        "${workspaceFolder}/apps/api-gateway/src/main.ts"
+      ],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "api-gateway",
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "8000",
+        "NODE_ENV": "dev",
+        "RABBIT_MQ_URI": "amqp://guest:guest@rabbitmq:5672/",
+        "MICROSERVICE_URLS_CUSTOMER_SERVICE": "http://localhost:8002/",
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Order Service",
       "program": "${workspaceFolder}/apps/order/src/main.ts",
       "args": [
@@ -70,20 +103,6 @@
         "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
       }
     },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach Customer Service (docker debug)",
-      "remoteRoot": "/usr/src/app",
-      "localRoot": "${workspaceFolder}",
-      "port": 9228,
-      "restart": true,
-      "protocol": "inspector",
-      "address": "0.0.0.0",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    },
   ],
   "compounds": [
     {
@@ -93,5 +112,12 @@
         "Launch Order Service"
       ]
     },
+    {
+      "name": "Customer + API Gateway",
+      "configurations": [
+        "Launch API Gateway",
+        "Launch Customer Service",
+      ]
+    }
   ]
 }

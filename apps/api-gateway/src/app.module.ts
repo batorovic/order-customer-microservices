@@ -1,16 +1,14 @@
-import { HttpExceptionsFilter } from '@batuhan_kutluay-case/common';
-import { AsyncLocalStorageModule, HealthModule, LoggerModule } from '@batuhan_kutluay-case/core';
-import { DatabaseModule } from '@batuhan_kutluay-case/core/database';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
-import { configuration, envVariablesSchema } from '../config';
-import { CustomerModule } from './customer/customer.module';
 
+import { HttpExceptionsFilter } from '@batuhan_kutluay-case/common';
+import { AsyncLocalStorageModule, HealthModule, LoggerModule } from '@batuhan_kutluay-case/core';
+import { ServiceClientModule } from '@batuhan_kutluay-case/core/service-client/service-client.module';
+import { ApiGatewayModule } from './api-gateway/api-gateway.module';
+import { configuration, envVariablesSchema } from './config';
 @Module({
   imports: [
-    LoggerModule,
-    AsyncLocalStorageModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
@@ -21,9 +19,12 @@ import { CustomerModule } from './customer/customer.module';
       load: [configuration],
       cache: true,
     }),
-    DatabaseModule,
+    LoggerModule,
+    AsyncLocalStorageModule,
     HealthModule,
-    CustomerModule,
+    ServiceClientModule,
+    ApiGatewayModule,
+    // PayoutModule,
   ],
   providers: [
     {

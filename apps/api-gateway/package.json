@@ -1,0 +1,13 @@
+{
+  "name": "@batuhan-kutluay-case/api-gateway",
+  "version": "1.0.0",
+  "description": "API GATEWAY",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:debug": "nest start --debug 0.0.0.0:9229 --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
