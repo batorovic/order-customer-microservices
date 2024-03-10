@@ -1,4 +1,4 @@
-import { AbstractDocument, Address } from '@batuhan_kutluay-case/common';
+import { AbstractDocument, Address, AddressSchema } from '@batuhan_kutluay-case/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -17,7 +17,7 @@ export class Customer extends AbstractDocument {
   @Prop({ type: String, required: true })
   email: string;
 
-  @Prop({ type: Address, required: true })
+  @Prop({ type: AddressSchema, required: true })
   address: Address;
 }
 
