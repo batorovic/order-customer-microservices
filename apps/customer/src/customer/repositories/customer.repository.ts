@@ -8,7 +8,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer, CustomerDocument, CustomerType } from '../entities';
-import { GetAllCustomers } from '../types';
+import { GetAllCustomers, UpdateCustomer } from '../types';
 
 @Injectable()
 export class CustomerRepository {
@@ -18,7 +18,7 @@ export class CustomerRepository {
     return (await this.customerModel.create(customer)).toObject();
   }
 
-  async update(id: string, customer: Partial<CustomerType>): Promise<CustomerDocument | null> {
+  async update(id: string, customer: UpdateCustomer): Promise<CustomerDocument | null> {
     return this.customerModel
       .findByIdAndUpdate(
         { _id: id },

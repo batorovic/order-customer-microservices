@@ -1,5 +1,9 @@
-import { CustomerDto, GetAllCustomersResponseDto, UpdateCustomerDto } from '@batuhan_kutluay-case/common';
-import { PaginationDto } from '@batuhan_kutluay-case/common/dto/pagination.dto';
+import {
+  CustomerDto,
+  GetAllCustomersResponseDto,
+  PaginationDto,
+  UpdateCustomerDto,
+} from '@batuhan_kutluay-case/common';
 import { CustomerServiceClient } from '@batuhan_kutluay-case/core/service-client/customer.service.client';
 import { Injectable } from '@nestjs/common';
 

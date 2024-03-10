@@ -1,4 +1,4 @@
-import { AbstractDocument, Address, AddressSchema } from '@batuhan_kutluay-case/common';
+import { AbstractDocument, Address, AddressSchema, OrderStatus } from '@batuhan_kutluay-case/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Product, ProductSchema } from './product.schema';
@@ -21,8 +21,8 @@ export class Order extends AbstractDocument {
   @Prop({ type: Number, required: true })
   price: number;
 
-  @Prop({ type: String, required: true })
-  status: string;
+  @Prop({ type: Number, required: true, default: OrderStatus.CREATED })
+  status: OrderStatus;
 
   @Prop({ type: AddressSchema, required: true })
   address: Address;

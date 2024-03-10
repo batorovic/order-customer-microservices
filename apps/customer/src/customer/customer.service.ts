@@ -1,5 +1,9 @@
-import { CreateCustomerDto, GetAllCustomersResponseDto, UpdateCustomerDto } from '@batuhan_kutluay-case/common';
-import { PaginationDto } from '@batuhan_kutluay-case/common/dto/pagination.dto';
+import {
+  CreateCustomerDto,
+  GetAllCustomersResponseDto,
+  PaginationDto,
+  UpdateCustomerDto,
+} from '@batuhan_kutluay-case/common';
 import { Injectable, Logger } from '@nestjs/common';
 import { ObjectId } from 'mongoose';
 import { CustomerNotFoundException } from './exceptions';

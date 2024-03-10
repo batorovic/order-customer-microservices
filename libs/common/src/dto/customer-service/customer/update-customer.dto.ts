@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsEmail, IsOptional, IsString } from 'class-validator';
-import { AddresDto } from '../../address.dto';
+import { IsEmail, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { UpdateAddresDto } from '../../update-address.dto';
 
 export class UpdateCustomerDto {
   @ApiPropertyOptional({
@@ -22,9 +22,10 @@ export class UpdateCustomerDto {
 
   @ApiPropertyOptional({
     description: 'Address of the customer',
-    type: AddresDto,
+    type: UpdateAddresDto,
   })
   @IsOptional()
-  @Type(() => AddresDto)
-  readonly address?: AddresDto;
+  @ValidateNested()
+  @Type(() => UpdateAddresDto)
+  readonly address?: UpdateAddresDto;
 }
