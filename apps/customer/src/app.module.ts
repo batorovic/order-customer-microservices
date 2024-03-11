@@ -21,6 +21,7 @@ import { CustomerModule } from './customer/customer.module';
       load: [configuration],
       cache: true,
     }),
+
     DatabaseModule,
     HealthModule,
     CustomerModule,

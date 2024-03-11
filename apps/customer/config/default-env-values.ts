@@ -11,5 +11,4 @@ export const DEFAULT_ENV_VALUES = {
     PORT: 3010,
     MONGODB_URI: 'mongodb://localhost:27017/test',
   },
-  MICROSERVICE_ACCESS_TOKEN: '7zRWuwsGuh67XcjR',
 };

@@ -47,5 +47,9 @@ export class UpdateOrderDto {
   @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => UpdateProductDto)
-  readonly product: UpdateProductDto;
+  readonly product?: UpdateProductDto;
+}
+
+export interface IndexedOrderDto extends UpdateOrderDto {
+  [key: string]: any;
 }

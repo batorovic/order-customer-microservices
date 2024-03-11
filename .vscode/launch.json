@@ -33,7 +33,6 @@
       "env": {
         "PORT": "8000",
         "NODE_ENV": "dev",
-        "RABBIT_MQ_URI": "amqp://guest:guest@rabbitmq:5672/",
         "MICROSERVICE_URLS_CUSTOMER_SERVICE": "http://localhost:8002/",
         "MICROSERVICE_URLS_ORDER_SERVICE": "http://localhost:8001/",
       }
@@ -68,7 +67,7 @@
         "PORT": "8001",
         "NODE_ENV": "dev",
         "MONGODB_URI": "mongodb://localhost:27050/order",
-        "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
+        "REDIS_URI": "localhost:6379"
       }
     },
     {

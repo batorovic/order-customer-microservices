@@ -64,9 +64,9 @@ export class OrderController {
   }
 
   @ApiOkResponse({
-    description: 'Updated order',
+    description: 'Updated order status',
   })
-  @ApiOperation({ summary: 'Update order' })
+  @ApiOperation({ summary: 'Update order status' })
   @Patch(':id/status')
   async changeStatus(
     @Param('id', ParseObjectIdPipe) id: string,
