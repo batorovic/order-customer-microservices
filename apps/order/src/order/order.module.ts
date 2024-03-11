@@ -6,8 +6,7 @@ import { UpdateOrderStatusHandler } from './commands/update-order-status.handler
 import { UpdateOrderHandler } from './commands/update-order.handler';
 import { Order, OrderSchema } from './entities';
 import { OrderController } from './order.controller';
-import { GetOrdersHandler } from './queries';
-import { GetCustomerOrdersHandler } from './queries/get-customer-orders.handler';
+import { GetCustomerOrdersHandler, GetOrdersHandler } from './queries';
 import { OrderRepository } from './repositories';
 
 @Module({

@@ -46,10 +46,10 @@ export class OrderDto {
 
   @ApiProperty({
     description: 'Products of the order',
-    type: [ProductDto],
+    type: ProductDto,
   })
   @IsDefined()
   @ValidateNested()
   @Type(() => ProductDto)
-  readonly product: ProductDto[];
+  readonly product: ProductDto;
 }

@@ -35,6 +35,7 @@
         "NODE_ENV": "dev",
         "RABBIT_MQ_URI": "amqp://guest:guest@rabbitmq:5672/",
         "MICROSERVICE_URLS_CUSTOMER_SERVICE": "http://localhost:8002/",
+        "MICROSERVICE_URLS_ORDER_SERVICE": "http://localhost:8001/",
       }
     },
     {
@@ -64,7 +65,7 @@
       "outputCapture": "std",
       "console": "integratedTerminal",
       "env": {
-        "PORT": "8081",
+        "PORT": "8001",
         "NODE_ENV": "dev",
         "MONGODB_URI": "mongodb://localhost:27050/order",
         "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
@@ -118,6 +119,13 @@
         "Launch API Gateway",
         "Launch Customer Service",
       ]
-    }
+    },
+    {
+      "name": "Order + API Gateway",
+      "configurations": [
+        "Launch API Gateway",
+        "Launch Order Service"
+      ]
+    },
   ]
 }

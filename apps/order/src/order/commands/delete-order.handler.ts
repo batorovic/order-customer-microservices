@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { OrderNotFoundException } from '../exceptions';
 import { OrderRepository } from '../repositories';
 import { DeleteOrderCommand } from './delete-order.command';
 
@@ -15,7 +16,7 @@ export class DeleteOrderHandler implements ICommandHandler<DeleteOrderCommand> {
     const order = await this.orderRepository.getById(command.id);
 
     if (!order) {
-      throw new Error('Order not found');
+      throw new OrderNotFoundException('Order not found');
     }
     await this.orderRepository.delete(command.id);
 

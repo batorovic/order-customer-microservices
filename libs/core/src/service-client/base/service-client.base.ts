@@ -45,27 +45,10 @@ export abstract class BaseServiceClient {
     return requestId;
   }
 
-  getCurrentUser() {
-    const currentUser = this.cls.get('currentUser');
-    return typeof currentUser === 'string' ? currentUser : JSON.stringify(currentUser);
-  }
-
-  private getV3Token() {
-    const v3Token = this.cls.get('Authorization');
-    return v3Token;
-  }
-
-  private getElapsed(start: Date): number {
-    return +new Date() - +start;
-  }
-
   private addContextToHeader(headers: RawAxiosRequestHeaders): Partial<RawAxiosRequestHeaders> {
     return {
       ...headers,
       ['request-id']: this.getRequestId(),
-      ['current-user']: this.getCurrentUser(),
-      ['access-token']: this.configService.get('MICROSERVICE_ACCESS_TOKEN'),
-      Authorization: headers.Authorization ?? this.getV3Token(),
     };
   }
 
@@ -88,8 +71,6 @@ export abstract class BaseServiceClient {
         params: deepObjectIdToString(params),
         headers: this.addContextToHeader(headers),
         validateStatus: () => true,
-        // httpAgent: new http.Agent({ keepAlive: true }),
-        // httpsAgent: new https.Agent({ keepAlive: true }),
       });
     } catch (requestError: any) {
       return this.throwError(

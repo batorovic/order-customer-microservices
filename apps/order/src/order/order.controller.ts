@@ -19,15 +19,6 @@ export class OrderController {
   ) {}
 
   @ApiOkResponse({
-    description: 'Created order',
-  })
-  @ApiOperation({ summary: 'Create order' })
-  @Post()
-  async create(@Body() createOrderDto: CreateOrderDto): Promise<string> {
-    return this.commandBus.execute(new CreateOrderCommand(createOrderDto));
-  }
-
-  @ApiOkResponse({
     description: 'Received orders',
   })
   @ApiOperation({ summary: 'Get Orders' })
@@ -43,6 +34,15 @@ export class OrderController {
   @Get('customer/:id')
   async getOrdersByCustomerId(@Param('id', ParseObjectIdPipe) id: string): Promise<OrderDocument[] | OrderDocument> {
     return this.queryBus.execute(new GetCustomerOrdersQuery(id));
+  }
+
+  @ApiOkResponse({
+    description: 'Created order',
+  })
+  @ApiOperation({ summary: 'Create order' })
+  @Post()
+  async create(@Body() createOrderDto: CreateOrderDto): Promise<string> {
+    return this.commandBus.execute(new CreateOrderCommand(createOrderDto));
   }
 
   @ApiOkResponse({

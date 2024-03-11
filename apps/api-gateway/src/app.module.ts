@@ -5,8 +5,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionsFilter } from '@batuhan_kutluay-case/common';
 import { AsyncLocalStorageModule, HealthModule, LoggerModule } from '@batuhan_kutluay-case/core';
 import { ServiceClientModule } from '@batuhan_kutluay-case/core/service-client/service-client.module';
-import { ApiGatewayModule } from './api-gateway/api-gateway.module';
 import { CustomerModule } from './api-gateway/apps/customer/customer.module';
+import { OrderModule } from './api-gateway/apps/order/order.module';
 import { configuration, envVariablesSchema } from './config';
 @Module({
   imports: [
@@ -24,8 +24,8 @@ import { configuration, envVariablesSchema } from './config';
     AsyncLocalStorageModule,
     HealthModule,
     ServiceClientModule,
-    ApiGatewayModule,
     CustomerModule,
+    OrderModule,
   ],
   providers: [
     {

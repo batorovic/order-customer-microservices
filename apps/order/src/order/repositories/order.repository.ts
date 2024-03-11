@@ -17,8 +17,8 @@ export class OrderRepository {
     return this.orderModel.find({ customer }).lean().exec();
   }
 
-  async getById(id: string): Promise<OrderDocument[] | null> {
-    return this.orderModel.find({ _id: id }).lean().exec();
+  async getById(id: string): Promise<OrderDocument | null> {
+    return this.orderModel.findById({ _id: id }).lean().exec();
   }
 
   async getOrders(): Promise<OrderDocument[]> {
@@ -30,8 +30,8 @@ export class OrderRepository {
   }
 
   async update(id: string, order: UpdateOrderDto): Promise<OrderDocument | null> {
-    //productlar array? mi yoksa tek bir product mu?
     const { address, product, ...rest } = order;
+
     return this.orderModel
       .findByIdAndUpdate(
         { _id: id },

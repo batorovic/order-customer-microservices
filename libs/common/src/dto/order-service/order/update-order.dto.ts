@@ -29,7 +29,7 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsEnum(OrderStatus)
-  readonly status: OrderStatus;
+  readonly status?: OrderStatus;
 
   @ApiPropertyOptional({
     description: 'Address of the customer',
