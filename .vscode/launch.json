@@ -100,7 +100,71 @@
         "PORT": "8002",
         "NODE_ENV": "dev",
         "MONGODB_URI": "mongodb://localhost:27050/customer",
-        "RABBIT_MQ_URI": "amqp://guest:guest@localhost:5672/"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Order Service",
+      "program": "${workspaceFolder}/apps/order/src/main.ts",
+      "args": [
+        "${workspaceFolder}/apps/order/src/main.ts"
+      ],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "order",
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "8001",
+        "NODE_ENV": "dev",
+        "MONGODB_URI": "mongodb://localhost:27050/order",
+        "REDIS_URI": "localhost:6379"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Log Service",
+      "program": "${workspaceFolder}/apps/log/src/main.ts",
+      "args": [
+        "${workspaceFolder}/apps/log/src/main.ts"
+      ],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "log",
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "9292",
+        "NODE_ENV": "dev",
+        "MONGODB_URI": "mongodb://localhost:27050/order",
       }
     },
   ],
@@ -124,6 +188,13 @@
       "configurations": [
         "Launch API Gateway",
         "Launch Order Service"
+      ]
+    },
+    {
+      "name": "Order + Log",
+      "configurations": [
+        "Launch Order Service",
+        "Launch Log Service"
       ]
     },
   ]

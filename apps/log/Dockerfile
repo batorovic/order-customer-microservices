@@ -9,13 +9,13 @@ COPY nest-cli.json nest-cli.json
 
 RUN npm install -g pnpm
 
-COPY apps/order apps/order
+COPY apps/log apps/log
 COPY libs libs
 
 
 RUN pnpm install -r 
 
-RUN pnpm run build order
+RUN pnpm run build log
 
 FROM public.ecr.aws/docker/library/node:18-alpine as production
 
@@ -33,6 +33,6 @@ RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 
-EXPOSE 8002
+EXPOSE 9292
 
-CMD ["node", "dist/apps/order/main"]
+CMD ["node", "dist/apps/log/main"]
