@@ -10,4 +10,8 @@ export class OrderRepository {
   async create(log: Log): Promise<LogDocument> {
     return (await this.logModel.create(log)).toObject();
   }
+
+  async findAll(): Promise<LogDocument[]> {
+    return this.logModel.find().lean().exec();
+  }
 }
