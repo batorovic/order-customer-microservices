@@ -21,4 +21,10 @@ export const configuration = () => ({
       },
     },
   },
+
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: parseInt(<string>process.env.REDIS_PORT, 10),
+    uri: process.env.REDIS_URI,
+  },
 });

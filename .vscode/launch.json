@@ -105,39 +105,6 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Order Service",
-      "program": "${workspaceFolder}/apps/order/src/main.ts",
-      "args": [
-        "${workspaceFolder}/apps/order/src/main.ts"
-      ],
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "run-script",
-        "start:debug",
-        "order",
-        "--nolazy",
-        "-r",
-        "ts-node/register",
-        "-r",
-        "tsconfig-paths/register"
-      ],
-      "sourceMaps": true,
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "cwd": "${workspaceRoot}",
-      "outputCapture": "std",
-      "console": "integratedTerminal",
-      "env": {
-        "PORT": "8001",
-        "NODE_ENV": "dev",
-        "MONGODB_URI": "mongodb://localhost:27050/order",
-        "REDIS_URI": "localhost:6379"
-      }
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Launch Log Service",
       "program": "${workspaceFolder}/apps/log/src/main.ts",
       "args": [
@@ -164,7 +131,8 @@
       "env": {
         "PORT": "9292",
         "NODE_ENV": "dev",
-        "MONGODB_URI": "mongodb://localhost:27050/order",
+        "MONGODB_URI": "mongodb://localhost:27050/log",
+        "REDIS_URI": "localhost:6379"
       }
     },
   ],
@@ -194,6 +162,15 @@
       "name": "Order + Log",
       "configurations": [
         "Launch Order Service",
+        "Launch Log Service"
+      ]
+    },
+    {
+      "name": "Order + Customer + API GATEWAY + Log",
+      "configurations": [
+        "Launch Order Service",
+        "Launch Customer Service",
+        "Launch API Gateway",
         "Launch Log Service"
       ]
     },

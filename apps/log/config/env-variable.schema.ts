@@ -25,4 +25,8 @@ export const envVariablesSchema: Joi.ObjectSchema = Joi.object({
     then: Joi.string().default(DEFAULT_ENV_VALUES.TEST.MONGODB_URI),
     otherwise: Joi.string().default(DEFAULT_ENV_VALUES.MONGODB_URI),
   }),
+
+  REDIS_HOST: Joi.string().default(DEFAULT_ENV_VALUES.REDIS_HOST),
+  REDIS_URI: Joi.string().default(DEFAULT_ENV_VALUES.REDIS_URI),
+  REDIS_PORT: Joi.number().default(DEFAULT_ENV_VALUES.REDIS_PORT),
 });
