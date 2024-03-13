@@ -60,9 +60,12 @@ export class LogProcessor implements OnModuleInit {
     try {
       await fs.writeFile(logFilePath, content);
       this.logger.debug(`Logs have been written to ${logFilePath}`);
-      await fs.unlink(logFilePath);
+
+      this.orderRepository.removeAll();
 
       // sendMailAndRemoveLogFileFromDisk(logFilePath);
+
+      await fs.unlink(logFilePath);
     } catch (error) {
       this.logger.debug('Error writing logs to file:', error);
     }

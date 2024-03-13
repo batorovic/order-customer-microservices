@@ -14,4 +14,8 @@ export class OrderRepository {
   async findAll(): Promise<LogDocument[]> {
     return this.logModel.find().lean().exec();
   }
+
+  async removeAll(): Promise<any> {
+    return this.logModel.deleteMany({}).lean().exec();
+  }
 }
