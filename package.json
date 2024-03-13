@@ -96,8 +96,8 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@batuhan-kutluay-case/common(|/.*)$": "<rootDir>/libs/common/src/$1",
-      "^@batuhan-kutluay-case/core(|/.*)$": "<rootDir>/libs/core/src/$1"
+      "^@batuhan_kutluay-case/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@batuhan_kutluay-case/core(|/.*)$": "<rootDir>/libs/core/src/$1"
     }
   }
 }

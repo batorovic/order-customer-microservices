@@ -12,7 +12,7 @@ export class CreateOrderDto {
   })
   @IsNotEmpty()
   @IsMongoId()
-  readonly customer: string;
+  customer: string;
 
   @ApiProperty({
     description: 'Quantity of the product',
@@ -20,7 +20,7 @@ export class CreateOrderDto {
   })
   @IsNumber()
   @IsNotEmpty()
-  readonly quantity: number;
+  quantity: number;
 
   @ApiProperty({
     description: 'Price of the product',
@@ -28,12 +28,12 @@ export class CreateOrderDto {
   })
   @IsNumber()
   @IsNotEmpty()
-  readonly price: number;
+  price: number;
 
   @ApiProperty({ enum: OrderStatus, description: 'Status of the product ', example: OrderStatus.PENDING })
   @IsNotEmpty()
   @IsEnum(OrderStatus)
-  readonly status: OrderStatus;
+  status: OrderStatus;
 
   @ApiProperty({
     description: 'Address of the customer',
@@ -42,7 +42,7 @@ export class CreateOrderDto {
   @IsDefined()
   @ValidateNested()
   @Type(() => AddresDto)
-  readonly address: AddresDto;
+  address: AddresDto;
 
   @ApiProperty({
     description: 'Products of the order',
@@ -51,5 +51,5 @@ export class CreateOrderDto {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ProductDto)
-  readonly product: ProductDto;
+  product: ProductDto;
 }

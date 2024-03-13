@@ -12,7 +12,7 @@ export class UpdateOrderDto {
   })
   @IsNumber()
   @IsOptional()
-  readonly quantity?: number;
+  quantity?: number;
 
   @ApiPropertyOptional({
     description: 'Price of the product',
@@ -20,7 +20,7 @@ export class UpdateOrderDto {
   })
   @IsNumber()
   @IsOptional()
-  readonly price?: number;
+  price?: number;
 
   @ApiPropertyOptional({
     enum: OrderStatus,
@@ -29,7 +29,7 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsEnum(OrderStatus)
-  readonly status?: OrderStatus;
+  status?: OrderStatus;
 
   @ApiPropertyOptional({
     description: 'Address of the customer',
@@ -38,7 +38,7 @@ export class UpdateOrderDto {
   @IsOptional()
   @ValidateNested()
   @Type(() => UpdateAddresDto)
-  readonly address?: UpdateAddresDto;
+  address?: UpdateAddresDto;
 
   @ApiPropertyOptional({
     description: 'Products of the order',
@@ -47,9 +47,5 @@ export class UpdateOrderDto {
   @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => UpdateProductDto)
-  readonly product?: UpdateProductDto;
-}
-
-export interface IndexedOrderDto extends UpdateOrderDto {
-  [key: string]: any;
+  product?: UpdateProductDto;
 }
