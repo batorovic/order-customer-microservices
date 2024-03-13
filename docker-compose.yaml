@@ -1,0 +1,69 @@
+services:
+  customer:
+    build:
+      context: .
+      dockerfile: ./apps/customer/Dockerfile
+      target: development
+    command: pnpm run start:debug customer
+    env_file:
+      - ./apps/customer/.env
+    ports:
+      - '8002:8002'
+      - '9228:9228'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: pnpm run start:debug api-gateway
+    env_file:
+      - ./apps/api-gateway/.env
+    ports:
+      - '8000:8000'
+      - '9229:9228'
+    volumes:
+      - .:/usr/src/app
+  order:
+    build:
+      context: .
+      dockerfile: ./apps/order/Dockerfile
+      target: development
+    command: pnpm run start:debug order
+    env_file:
+      - ./apps/order/.env
+    ports:
+      - '8001:8001'
+      - '9230:9228'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+      - redis
+  log:
+    build:
+      context: .
+      dockerfile: ./apps/log/Dockerfile
+      target: development
+    command: pnpm run start:debug log
+    env_file:
+      - ./apps/log/.env
+    ports:
+      - '9292:9292'
+      - '9231:9228'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    image: mongo
+    ports:
+      - '27050:27017'
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"

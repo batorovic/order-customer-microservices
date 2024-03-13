@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:debug": "nest start --debug 0.0.0.0:9230 --watch"
+    "start:debug": "nest start --debug 0.0.0.0:9228 --watch"
   },
   "author": "",
   "license": "ISC",

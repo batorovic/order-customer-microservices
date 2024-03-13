@@ -33,6 +33,4 @@ RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 
-EXPOSE 8002
-
 CMD ["node", "dist/apps/customer/main"]

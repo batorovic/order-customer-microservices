@@ -2,7 +2,7 @@ import { LogLevel } from '@batuhan_kutluay-case/common/enums';
 import { name } from 'package.json';
 
 export const DEFAULT_ENV_VALUES = {
-  NAME: name || 'customer',
+  NAME: name || 'log',
   NODE_ENV: 'dev',
   PORT: 9292,
   LOG_LEVEL: LogLevel.DEBUG,
