@@ -7,6 +7,12 @@ This project demonstrates a microservices architecture with a focus on managing 
 
 To get this project up and running on your system, ensure you have Docker, Docker Compose, and pnpm installed.
 
+### Prerequisites
+- **pnpm**: If you do not have pnpm installed, you can install it globally via npm by running:
+  ```bash
+  npm install -g pnpm
+- **Docker**
+
 ### Steps to Run
 
 1. Clone the project repository:
@@ -27,6 +33,12 @@ This command performs the following actions:
 - Installs all necessary dependencies.
 - Runs the automated tests to ensure everything is in order.
 - Builds Docker images for the services.
+
+## Services and Ports
+- **API Gateway:** Accessible on port **8000** for API requests.
+- **Order Service:** Accessible on port **8001**.
+- **Customer Service:** Accessible on port **8002**.
+- **Log Service:** Accessible on port **9292**.
 
 
 ## Built With
